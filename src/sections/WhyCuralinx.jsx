@@ -21,7 +21,7 @@ export default function WhyCuralinx() {
   const data = audience ? WHY[audience] : null
 
   return (
-    <section ref={ref} id="why-curalinx" className="scroll-mt-nav bg-off-white py-20 md:py-24 xl:py-32">
+    <section ref={ref} id="why-curalinx" className="scroll-mt-nav py-20 md:py-24 xl:py-32">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
         <SectionHead
           eyebrow={WHY.eyebrow}
@@ -44,7 +44,7 @@ export default function WhyCuralinx() {
             id="why-panel"
             role="tabpanel"
             aria-labelledby={`why-tab-${audience}`}
-            className={cx('mt-10 animate-panel-in rounded-2xl p-6 md:p-12', audience === 'patient' ? 'bg-teal-100' : 'bg-blue-100')}
+            className={cx('glass mt-10 animate-panel-in rounded-2xl p-6 md:p-12', audience === 'patient' ? 'bg-teal-100/60!' : 'bg-blue-100/60!')}
           >
             <div className="mx-auto mb-9 flex max-w-[640px] flex-col items-center gap-3.5 text-center">
               <Badge tone={audience} dot>{data.badge}</Badge>
@@ -67,9 +67,9 @@ export default function WhyCuralinx() {
             </div>
           </div>
         ) : (
-          <div className="mt-10 grid justify-items-center gap-4 rounded-2xl border-[1.5px] border-dashed border-gray-300 p-6 text-center md:p-12">
+          <div className="mt-10 grid justify-items-center gap-4 glass-subtle rounded-2xl border-dashed! border-navy-900/15! p-6 text-center md:p-12">
             <DataFlow className="hidden w-full max-w-[760px] md:block" />
-            <p className="m-0 max-w-[44ch] text-sm leading-relaxed text-gray-600">{WHY.empty}</p>
+            <p className="m-0 max-w-[44ch] text-sm leading-relaxed text-gray-900">{WHY.empty}</p>
           </div>
         )}
       </div>

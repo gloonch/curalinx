@@ -19,14 +19,14 @@ export default function Hero({ slotRef, numberSlotRef, live, progress }) {
       className="relative grid min-h-[calc(100svh_-_var(--nav-h))] place-items-center overflow-hidden px-4 pt-12 pb-24"
     >
       <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-        <div className="dot-grid absolute inset-0 opacity-[0.06] [mask-image:radial-gradient(70%_60%_at_50%_50%,transparent_30%,#000_100%)]" />
         <Ribbon width={1400} height={420} turns={1.25} strokeWidth={2.5} opacity={0.07} className="absolute bottom-[8%] left-1/2 w-[max(1400px,120vw)] -translate-x-1/2" />
       </div>
 
       <div className="relative flex flex-col items-center text-center">
         <div ref={slotRef} role="img" aria-label="Curalinx" className="aspect-[1089/209] w-(--logo-hero) max-w-full" />
 
-        <h1 className="type-eyebrow m-0 mt-12 text-blue-700 md:mt-16" style={fade}>
+        <h1 className="type-eyebrow eyebrow-pill m-0 mt-12 text-blue-700 md:mt-16" style={fade}>
+          <span className="size-1.5 rounded-full bg-blue-600" aria-hidden="true" />
           {HERO.heading}
         </h1>
 
@@ -43,7 +43,7 @@ export default function Hero({ slotRef, numberSlotRef, live, progress }) {
           />
         </StatDetails>
 
-        <p aria-hidden="true" className="m-0 mt-3 max-w-[32ch] text-sm text-balance text-gray-700 md:max-w-none md:text-base" style={fade}>
+        <p aria-hidden="true" className="m-0 mt-3 max-w-[32ch] text-sm text-balance text-gray-900 md:max-w-none md:text-base" style={fade}>
           <span key={live.stat.id} className="inline-block animate-panel-in">
             <span className="relative mr-2 inline-flex size-1.5 align-middle">
               <span className="absolute inset-0 animate-ping rounded-full bg-teal-500/60" />
@@ -57,7 +57,7 @@ export default function Hero({ slotRef, numberSlotRef, live, progress }) {
       <SectionLink
         id="why-curalinx"
         aria-label="Scroll to Why Curalinx"
-        className="absolute bottom-7 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2.5 text-[11px] font-semibold tracking-[0.16em] text-gray-600 uppercase no-underline"
+        className="absolute bottom-7 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2.5 text-[11px] font-semibold tracking-[0.16em] text-navy-900 uppercase no-underline"
         style={{ opacity: Math.max(0, 1 - progress * 3) }}
       >
         <span>Scroll</span>

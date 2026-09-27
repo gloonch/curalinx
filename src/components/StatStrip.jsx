@@ -21,7 +21,7 @@ export default function StatStrip({ live, numberRef, progress }) {
       style={{ pointerEvents: docked ? 'auto' : 'none' }}
     >
       <div
-        className="absolute inset-x-0 top-0 h-[170%] bg-white/85 backdrop-blur-lg [mask-image:linear-gradient(to_bottom,#000_45%,transparent)]"
+        className="absolute inset-x-0 top-0 h-[170%] backdrop-blur-xl backdrop-saturate-150 [mask-image:linear-gradient(to_bottom,#000_45%,transparent)]"
         style={{ opacity: fade }}
       />
       <div className="relative mx-auto flex h-full max-w-[1200px] items-center justify-center gap-3 px-4 text-[12px] leading-none nav:text-[13px]">
@@ -39,12 +39,12 @@ export default function StatStrip({ live, numberRef, progress }) {
             />
           </StatDetails>
         </span>
-        <span className="font-medium text-gray-700" style={{ opacity: fade }}>
+        <span className="font-medium text-gray-900" style={{ opacity: fade }}>
           <span key={live.stat.id} className="inline-block animate-panel-in">
             {live.stat.short}
           </span>
         </span>
-        <span className="hidden text-gray-500 sm:inline" style={{ opacity: fade }}>
+        <span className="hidden text-gray-700 sm:inline" style={{ opacity: fade }}>
           {HERO.sinceShort}
         </span>
       </div>

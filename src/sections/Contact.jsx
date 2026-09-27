@@ -48,7 +48,7 @@ export default function Contact() {
           <Reveal as="ul" className="mt-9 mb-0 grid list-none gap-3.5 p-0">
             {info.map((i) => (
               <li key={i.icon} className="flex items-center gap-3">
-                <span className="grid size-10 flex-none place-items-center rounded-md bg-teal-100 text-teal-700">
+                <span className="grid size-10 flex-none place-items-center glass-subtle rounded-md text-teal-800">
                   <Icon name={i.icon} size={18} />
                 </span>
                 <span className="text-[15px] font-medium text-gray-900 select-all">{i.text}</span>
@@ -57,7 +57,7 @@ export default function Contact() {
           </Reveal>
         </div>
 
-        <Reveal className="rounded-2xl border border-gray-200 bg-white p-6 md:p-11">
+        <Reveal className="glass-strong rounded-2xl p-6 md:p-11">
           {status === 'done' ? (
             <div role="status" className="grid justify-items-center gap-2.5 py-10 text-center text-success">
               <Icon name="circle-check" size={44} />

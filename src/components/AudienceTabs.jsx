@@ -32,12 +32,12 @@ export default function AudienceTabs({ value, onChange, idBase = 'why', hint = '
         role="tablist"
         aria-label="Choose your perspective"
         onKeyDown={onKeyDown}
-        className="relative grid w-full grid-cols-2 gap-1.5 rounded-lg bg-gray-100 p-1.5 sm:inline-grid sm:w-auto"
+        className="glass-subtle relative grid w-full grid-cols-2 gap-1.5 rounded-lg p-1.5 shadow-[0_8px_28px_rgb(0_0_100/0.08)] sm:inline-grid sm:w-auto"
       >
         <span
           aria-hidden="true"
           className={cx(
-            'absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%_-_9px)] rounded-md shadow-sm transition-[transform,background-color,opacity] duration-240 ease-standard',
+            'gloss absolute top-1.5 bottom-1.5 left-1.5 w-[calc(50%_-_9px)] rounded-md shadow-[0_6px_18px_rgb(0_0_100/0.2)] transition-[transform,background-color,opacity] duration-240 ease-standard',
             indicator,
           )}
         />
@@ -65,7 +65,7 @@ export default function AudienceTabs({ value, onChange, idBase = 'why', hint = '
         })}
       </div>
       {!value && hint && (
-        <p className="mt-3.5 flex items-center gap-2 text-sm font-medium text-gray-600">
+        <p className="mt-3.5 flex items-center gap-2 text-sm font-medium text-gray-900">
           <span className="size-1.5 animate-pulse-dot rounded-full bg-brand-gradient" aria-hidden="true" />
           {hint}
         </p>

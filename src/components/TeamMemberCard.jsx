@@ -5,7 +5,7 @@ export default function TeamMemberCard({ name, role, bio, photo, tone = 'brand' 
   const initials = name.split(/\s+/).map((w) => w[0]).join('').slice(0, 2).toUpperCase()
   return (
     <article className="group flex flex-col gap-[18px]">
-      <div className="relative aspect-[4/5] max-w-full overflow-hidden rounded-xl bg-blue-50">
+      <div className="glass relative aspect-[4/5] max-w-full overflow-hidden rounded-xl">
         {photo ? (
           <img src={photo} alt={`Portrait of ${name}`} loading="lazy" className="block size-full object-cover transition-transform duration-600 ease-standard group-hover:scale-[1.03]" />
         ) : (
@@ -17,8 +17,8 @@ export default function TeamMemberCard({ name, role, bio, photo, tone = 'brand' 
       </div>
       <div>
         <h3 className="m-0 text-xl leading-snug font-bold tracking-[-0.01em] text-navy-900">{name}</h3>
-        <p className="type-eyebrow mt-1 mb-0 text-blue-600">{role}</p>
-        {bio && <p className="mt-2.5 mb-0 text-[15px] leading-relaxed text-gray-700">{bio}</p>}
+        <p className="type-eyebrow mt-1 mb-0 text-navy-700">{role}</p>
+        {bio && <p className="mt-2.5 mb-0 text-[15px] leading-relaxed text-gray-900">{bio}</p>}
       </div>
     </article>
   )

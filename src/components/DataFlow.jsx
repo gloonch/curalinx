@@ -51,7 +51,7 @@ export default function DataFlow({ nodes = DEFAULT_NODES, animated = true, class
           return (
             <g key={n.label}>
               {core && <circle cx={x} cy={cy} r={R + 12} fill="none" stroke={`url(#${gid})`} strokeWidth="1.5" opacity="0.6" />}
-              <circle cx={x} cy={cy} r={R} fill={core ? 'var(--color-navy-900)' : '#ffffff'} stroke={core ? 'none' : 'var(--color-gray-200)'} strokeWidth="1.5" />
+              <circle cx={x} cy={cy} r={R} fill={core ? 'var(--color-navy-900)' : 'rgb(255 255 255 / 0.75)'} stroke={core ? 'none' : 'rgb(255 255 255 / 0.9)'} strokeWidth="1.5" />
               <svg
                 x={x - 13}
                 y={cy - 13}
@@ -66,7 +66,7 @@ export default function DataFlow({ nodes = DEFAULT_NODES, animated = true, class
                 dangerouslySetInnerHTML={{ __html: ICONS[n.icon] || '' }}
               />
               <text x={x} y={cy + R + 32} textAnchor="middle" fill="var(--color-navy-900)" style={{ font: '700 14px var(--font-sans)' }}>{n.label}</text>
-              {n.sub && <text x={x} y={cy + R + 52} textAnchor="middle" fill="var(--color-gray-600)" style={{ font: '500 12px var(--font-sans)' }}>{n.sub}</text>}
+              {n.sub && <text x={x} y={cy + R + 52} textAnchor="middle" fill="var(--color-gray-700)" style={{ font: '500 12px var(--font-sans)' }}>{n.sub}</text>}
             </g>
           )
         })}

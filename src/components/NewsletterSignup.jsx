@@ -20,7 +20,7 @@ export default function NewsletterSignup({ title, text, onSubscribe }) {
   }
 
   return (
-    <section aria-labelledby="newsletter-title" className="relative grid grid-cols-1 items-center gap-8 overflow-hidden rounded-2xl border border-gray-200 bg-off-white px-5 py-7 md:grid-cols-[1fr_minmax(0,460px)] md:p-10">
+    <section aria-labelledby="newsletter-title" className="relative grid grid-cols-1 items-center gap-8 overflow-hidden glass rounded-2xl px-5 py-7 md:grid-cols-[1fr_minmax(0,460px)] md:p-10">
       <div>
         <h3 id="newsletter-title" className="type-h3 mt-0 mb-1.5 text-navy-900">{title}</h3>
         <p className="m-0 text-[15px] leading-relaxed text-gray-700">{text}</p>

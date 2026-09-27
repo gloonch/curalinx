@@ -10,7 +10,7 @@ const HEAD = 'mb-4 text-[13px] font-bold tracking-[0.12em] text-white uppercase'
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-navy-900 text-white">
+    <footer className="glass-dark relative overflow-hidden text-white">
       <Ribbon tone="inverse" width={620} height={220} turns={1.25} opacity={0.12} strokeWidth={2} className="pointer-events-none absolute top-6 -right-20 w-[620px]" />
       <div className="relative mx-auto max-w-[1200px] px-4 pt-16 pb-6 nav:px-8 nav:pt-20 nav:pb-8">
         <div className="grid grid-cols-1 gap-10 min-[481px]:grid-cols-2 nav:grid-cols-[1.4fr_1fr_1fr_1fr]">
@@ -25,7 +25,7 @@ export default function Footer() {
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`Curalinx on ${s.label}`}
-                  className="grid size-10 place-items-center rounded-md border border-white/20 text-muted-inverse transition-colors duration-180 hover:border-teal-300 hover:text-teal-300"
+                  className="grid size-10 place-items-center rounded-md border border-white/20 bg-white/5 text-muted-inverse backdrop-blur-sm transition-colors duration-180 hover:border-teal-300 hover:text-teal-300"
                 >
                   <Icon name={s.icon} size={18} />
                 </a>

@@ -27,13 +27,19 @@ export default function SiteLayout() {
 
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[300] focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:shadow-lg">
+      {/* Brand aurora that the glass surfaces blur */}
+      <div className="aurora" aria-hidden="true">
+        <span className="aurora__blob aurora__blob--blue" />
+        <span className="aurora__blob aurora__blob--teal" />
+      </div>
+      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[300] focus:rounded-md focus:glass-strong focus:px-4 focus:py-2 focus:shadow-lg">
         Skip to content
       </a>
       <Navbar
         logoHidden={isHome}
         logoSlotRef={navSlotRef}
-        scrolled={isHome ? morphProgress > 0.98 : scrolled}
+        glass={isHome ? morphProgress : scrolled ? 1 : 0}
+        animated={!isHome}
       />
       <main id="main">
         <Outlet context={{ navSlotRef, setMorphProgress }} />

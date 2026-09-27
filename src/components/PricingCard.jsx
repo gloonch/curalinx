@@ -12,8 +12,8 @@ export default function PricingCard({ name, price, currency = '$', period = '/ m
     <article
       aria-label={`${name} plan`}
       className={cx(
-        'relative flex h-full w-full flex-col rounded-xl p-8 transition-[transform,box-shadow,border-color] duration-250 ease-standard hover:-translate-y-[3px] hover:shadow-md',
-        featured ? 'gradient-border shadow-md' : 'border border-gray-200 bg-white shadow-sm hover:border-blue-200',
+        'relative flex h-full w-full flex-col rounded-xl p-8 glass-hover',
+        featured ? 'glass-strong glass-gradient-border' : 'glass',
       )}
     >
       <div className="flex min-h-[26px] items-center justify-between gap-3">
@@ -26,9 +26,9 @@ export default function PricingCard({ name, price, currency = '$', period = '/ m
           {currency}
           {price}
         </b>
-        <span className="text-[15px] font-medium text-gray-600">{period}</span>
+        <span className="text-[15px] font-medium text-gray-700">{period}</span>
       </div>
-      <hr className={cx('my-6 h-px border-0', featured ? 'bg-brand-gradient opacity-50' : 'bg-gray-200')} />
+      <hr className={cx('my-6 h-px border-0', featured ? 'bg-brand-gradient opacity-50' : 'bg-navy-900/10')} />
       <ul className="mb-8 grid flex-1 content-start gap-3 p-0">
         {features.map((f) => (
           <li key={f} className="flex items-start gap-3 text-[15px] leading-normal text-gray-900">

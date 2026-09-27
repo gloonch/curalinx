@@ -15,9 +15,11 @@ const LINK =
  * Sticky site header: logo slot (left), links (centre), Request a Demo (right).
  * Below 900px: logo + compact CTA + hamburger sheet.
  * On the landing page the logo slot stays empty (`logoHidden`) because the
- * Hero logo travels into it (see hooks/useScrollMorph).
+ * Hero logo travels into it (see hooks/useScrollMorph), and `glass` follows
+ * the same scroll progress so the blur builds up with the move. Elsewhere
+ * `glass` is 0/1 and `animated` eases the change.
  */
-export default function Navbar({ logoHidden = false, logoSlotRef, scrolled = false }) {
+export default function Navbar({ logoHidden = false, logoSlotRef, glass = 0, animated = false }) {
   const [open, setOpen] = useState(false)
   const { pathname } = useLocation()
 
@@ -58,13 +60,22 @@ export default function Navbar({ logoHidden = false, logoSlotRef, scrolled = fal
       </SectionLink>
     )
 
+  // No white fill: the header only gains blur (and a hairline) as `glass` goes 0 → 1.
+  const g = open ? 1 : glass
+  const backdrop = `blur(${(g * 24).toFixed(1)}px) saturate(${Math.round(100 + g * 60)}%)`
+
   return (
     <header
       data-site-header
       className={cx(
-        'sticky top-[env(safe-area-inset-top,0px)] z-[100] h-(--nav-h) transition-[background-color,box-shadow] duration-250 ease-standard',
-        scrolled || open ? 'bg-white/90 shadow-nav backdrop-blur-md backdrop-saturate-150' : 'bg-transparent',
+        'sticky top-[env(safe-area-inset-top,0px)] z-[100] h-(--nav-h) border-b bg-transparent',
+        animated && 'transition-[backdrop-filter,-webkit-backdrop-filter,border-color] duration-300 ease-standard',
       )}
+      style={{
+        backdropFilter: backdrop,
+        WebkitBackdropFilter: backdrop,
+        borderBottomColor: `rgb(0 0 100 / ${(g * 0.06).toFixed(3)})`,
+      }}
     >
       <div className="mx-auto grid h-full max-w-[1200px] grid-cols-[1fr_auto] items-center gap-6 px-4 nav:grid-cols-[1fr_auto_1fr] nav:px-8">
         <Link
@@ -100,7 +111,7 @@ export default function Navbar({ logoHidden = false, logoSlotRef, scrolled = fal
             aria-expanded={open}
             aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
-            className="grid size-11 place-items-center rounded-sm text-navy-900 hover:bg-off-white nav:hidden"
+            className="grid size-11 place-items-center rounded-sm text-navy-900 hover:bg-white/60 nav:hidden"
           >
             <Icon name={open ? 'x' : 'menu'} size={24} />
           </button>
@@ -113,7 +124,7 @@ export default function Navbar({ logoHidden = false, logoSlotRef, scrolled = fal
         aria-hidden={!open}
         inert={!open}
         className={cx(
-          'absolute inset-x-3 top-[calc(100%_+_4px)] z-[200] rounded-xl border border-gray-200 bg-white p-3 shadow-lg transition-[opacity,transform] duration-250 ease-standard nav:hidden',
+          'glass-strong absolute inset-x-3 top-[calc(100%_+_4px)] z-[200] rounded-xl p-3 transition-[opacity,transform] duration-250 ease-standard nav:hidden',
           open ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-2 opacity-0',
         )}
       >
@@ -121,7 +132,7 @@ export default function Navbar({ logoHidden = false, logoSlotRef, scrolled = fal
           <div key={item.label}>
             {renderLink(
               item,
-              'flex min-h-[52px] items-center justify-between rounded-md px-3 text-[17px] font-semibold text-navy-900 no-underline hover:bg-off-white',
+              'flex min-h-[52px] items-center justify-between rounded-md px-3 text-[17px] font-semibold text-navy-900 no-underline hover:bg-white/70',
               { children: <Icon name="arrow-right" size={18} /> },
             )}
           </div>,

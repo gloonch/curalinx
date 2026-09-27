@@ -36,7 +36,7 @@ export default function StatDetails({ stat, rate, className, ref, children }) {
       <span
         role="tooltip"
         className={cx(
-          'absolute top-full left-1/2 z-10 mt-3 block w-[min(18rem,calc(100vw_-_32px))] -translate-x-1/2 rounded-lg border border-gray-200 bg-white p-4 text-left shadow-md transition-[opacity,translate] duration-250 ease-standard',
+          'absolute top-full left-1/2 z-10 mt-3 block w-[min(18rem,calc(100vw_-_32px))] -translate-x-1/2 glass-strong rounded-lg p-4 text-left transition-[opacity,translate] duration-250 ease-standard',
           open ? 'translate-y-0 opacity-100' : 'pointer-events-none -translate-y-1 opacity-0',
         )}
       >
@@ -46,14 +46,14 @@ export default function StatDetails({ stat, rate, className, ref, children }) {
         </span>
         <span className="mt-2 block text-sm font-semibold text-navy-900">{stat.label}</span>
         <span className="mt-3 grid grid-cols-[auto_1fr] gap-x-4 gap-y-1.5 text-[13px]">
-          <span className="text-gray-500">Counted from</span>
+          <span className="text-gray-700">Counted from</span>
           <span className="text-gray-900">00:00 UTC today</span>
-          <span className="text-gray-500">Rate</span>
+          <span className="text-gray-700">Rate</span>
           <span className="text-gray-900 tabular-nums">+{rate.toFixed(2)} per second</span>
-          <span className="text-gray-500">Source</span>
+          <span className="text-gray-700">Source</span>
           <span className="text-gray-900">{stat.source}</span>
         </span>
-        <span className="mt-3 block text-[11px] leading-snug text-gray-500">{HERO.note}</span>
+        <span className="mt-3 block text-[11px] leading-snug text-gray-700">{HERO.note}</span>
       </span>
     </span>
   )

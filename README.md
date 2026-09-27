@@ -44,6 +44,21 @@ Navbar items **Why Curalinx**, **Plans**, **Contact Us** and **Request a Demo** 
 - **Why Curalinx reset** (`src/hooks/useResetWhenLeftAbove.js`): no tab is selected on entry. The choice stays while you scroll down and resets when you scroll back up above the section.
 - **Forms** (`src/sections/RequestDemo.jsx`, `Contact.jsx`, `components/NewsletterSignup.jsx`): client-side validation with messages under each field. They are **not connected to a backend yet**; look for the `TODO` comments where the submit should call your API.
 
+## Theme: glassmorphism
+
+Every page sits on a fixed **brand aurora** (soft Navy, Blue and Teal light with a faint dot grid, see `.aurora` in `src/index.css`, rendered in `SiteLayout`). Surfaces are frosted glass:
+
+| Utility | Used for |
+|---|---|
+| `glass` | Cards, pricing cards, team photos, newsletter, Why Curalinx panel |
+| `glass-strong` | Navbar (once scrolled), mobile menu, Request a Demo and Contact form panels, featured plan |
+| `glass-subtle` | Tab track, icon tiles, empty states |
+| `glass-dark` | Footer |
+| `eyebrow-pill` | Small section labels, kept readable over the aurora |
+| `glass-gradient-border` | Navy→Blue→Teal hairline on the featured plan and About pillars |
+
+Opacity levels were measured against the strongest point of the aurora so text keeps WCAG AA contrast. Text sitting directly on the aurora uses `gray-900` or `navy-900`. Browsers without `backdrop-filter`, and visitors with *Reduce transparency* switched on, get near-solid surfaces automatically.
+
 ## Where to change things
 
 | To change | Edit |
@@ -51,6 +66,7 @@ Navbar items **Why Curalinx**, **Plans**, **Contact Us** and **Request a Demo** 
 | Any text (headings, plans, team, contact details) | `src/content/site.js` |
 | Team photos | Put images in `public/team/` and add `photo: '/team/name.jpg'` to each member in `src/content/site.js` |
 | Colours, fonts, radii, shadows | The `@theme` block in `src/index.css` |
+| Glass strength or aurora colours | The *Glassmorphism* section of `src/index.css` |
 | Logo | `src/assets/logo.png` (navbar/hero) and `src/assets/logo-reversed.png` (footer) |
 
 ## Project structure

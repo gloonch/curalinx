@@ -13,11 +13,12 @@ const SIZES = {
 
 const VARIANTS = {
   primary:
-    'bg-navy-900 text-white shadow-xs hover:bg-navy-800 hover:shadow-[0_0_0_4px_rgb(41_111_225/0.14)] active:bg-navy-950',
-  secondary: 'border-gray-300 bg-white text-navy-900 hover:border-navy-900 hover:bg-off-white',
-  accent: 'bg-teal-700 text-white hover:bg-teal-800',
-  ghost: 'bg-transparent px-3 text-navy-900 hover:bg-off-white',
-  inverse: 'bg-white text-navy-900 hover:bg-blue-100',
+    'gloss bg-navy-900 text-white shadow-[0_6px_20px_rgb(0_0_100/0.25)] hover:bg-navy-800 hover:shadow-[0_0_0_4px_rgb(41_111_225/0.16),0_8px_24px_rgb(0_0_100/0.28)] active:bg-navy-950',
+  secondary:
+    'border-white/80 bg-white/55 text-navy-900 shadow-[0_4px_16px_rgb(0_0_100/0.08)] backdrop-blur-md hover:border-navy-900/40 hover:bg-white/80',
+  accent: 'gloss bg-teal-700 text-white shadow-[0_6px_20px_rgb(11_124_120/0.25)] hover:bg-teal-800',
+  ghost: 'bg-transparent px-3 text-navy-900 hover:bg-white/60',
+  inverse: 'bg-white/90 text-navy-900 backdrop-blur-md hover:bg-white',
 }
 
 /**

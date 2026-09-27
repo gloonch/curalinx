@@ -44,7 +44,10 @@ export default function RequestDemo() {
   }
 
   return (
-    <section id="request-demo" className="relative scroll-mt-nav overflow-hidden bg-blue-50 py-20 md:py-24 xl:py-32">
+    <section id="request-demo" className="relative scroll-mt-nav overflow-hidden py-20 md:py-24 xl:py-32">
+      {/* Extra colour behind the form so the glass reads */}
+      <div aria-hidden="true" className="pointer-events-none absolute top-1/4 right-[-10%] size-[36rem] rounded-full bg-blue-400/25 blur-[90px]" />
+      <div aria-hidden="true" className="pointer-events-none absolute bottom-0 left-[20%] size-[28rem] rounded-full bg-teal-300/25 blur-[90px]" />
       <Ribbon width={1400} height={300} turns={1.25} opacity={0.12} strokeWidth={2} className="pointer-events-none absolute -bottom-10 -left-[10%] w-[120%]" />
       <div className="relative mx-auto grid max-w-[1200px] grid-cols-1 items-start gap-8 px-4 md:px-8 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
         <div>
@@ -52,7 +55,7 @@ export default function RequestDemo() {
           <Reveal as="ul" className="mt-9 mb-0 grid list-none gap-3.5 p-0">
             {DEMO.perks.map((p) => (
               <li key={p.icon} className="flex items-center gap-3 text-[15px] font-medium text-gray-900">
-                <span className="grid size-10 flex-none place-items-center rounded-md border border-gray-200 bg-white text-blue-600">
+                <span className="grid size-10 flex-none place-items-center glass-subtle rounded-md text-blue-700">
                   <Icon name={p.icon} size={18} />
                 </span>
                 {p.text}
@@ -61,7 +64,7 @@ export default function RequestDemo() {
           </Reveal>
         </div>
 
-        <Reveal className="rounded-2xl border border-gray-200 bg-white p-6 shadow-md md:p-11">
+        <Reveal className="glass-strong rounded-2xl p-6 md:p-11">
           {status === 'done' ? (
             <div role="status" className="grid justify-items-center gap-2.5 py-10 text-center text-success">
               <Icon name="circle-check" size={44} />
@@ -84,7 +87,7 @@ export default function RequestDemo() {
                   <Button type="submit" size="lg" fullWidth iconRight="arrow-right">Request a Demo</Button>
                 )}
               </div>
-              <p className="m-0 text-xs text-gray-600 md:col-span-2">By submitting you agree to our Privacy Policy.</p>
+              <p className="m-0 text-xs text-gray-700 md:col-span-2">By submitting you agree to our Privacy Policy.</p>
             </form>
           )}
         </Reveal>

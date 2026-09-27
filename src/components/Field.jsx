@@ -3,7 +3,7 @@ import Icon from './Icon'
 import cx from '../lib/cx'
 
 const CONTROL =
-  'w-full min-h-12 rounded-md border-[1.5px] bg-white px-3.5 py-3 text-base leading-snug text-gray-900 shadow-xs outline-none transition-[border-color,box-shadow] duration-180 ease-standard placeholder:text-gray-600 appearance-none'
+  'w-full min-h-12 rounded-md border-[1.5px] bg-white/80 backdrop-blur-sm focus:bg-white px-3.5 py-3 text-base leading-snug text-gray-900 shadow-xs outline-none transition-[border-color,box-shadow] duration-180 ease-standard placeholder:text-gray-600 appearance-none'
 
 function controlState(error, success) {
   if (error) return 'border-critical focus:shadow-[0_0_0_4px_rgb(196_43_43/0.16)]'
@@ -19,7 +19,7 @@ export function FieldLabel({ htmlFor, id, required, optional, children }) {
         {children}
         {required && <span className="text-critical" aria-hidden="true"> *</span>}
       </span>
-      {optional && <span className="text-xs font-medium text-gray-600">Optional</span>}
+      {optional && <span className="text-xs font-medium text-gray-700">Optional</span>}
     </Tag>
   )
 }
@@ -27,7 +27,7 @@ export function FieldLabel({ htmlFor, id, required, optional, children }) {
 export function FieldMessage({ id, error, success, hint }) {
   const message = error || success || hint
   if (!message) return null
-  const tone = error ? 'text-critical' : success ? 'text-success' : 'text-gray-600'
+  const tone = error ? 'text-critical' : success ? 'text-success' : 'text-gray-700'
   return (
     <div id={id} role={error ? 'alert' : undefined} className={cx('flex items-start gap-1.5 text-[13px] font-medium leading-snug', tone)}>
       {(error || success) && <Icon name={error ? 'circle-alert' : 'circle-check'} size={16} className="mt-px" />}
@@ -105,7 +105,7 @@ export function RoleSelect({ name, label = 'I am a', value, onChange, required, 
         role="radiogroup"
         aria-labelledby={labelId}
         aria-describedby={error ? msgId : undefined}
-        className={cx('grid grid-cols-2 gap-1 rounded-md border-[1.5px] bg-gray-100 p-1', error ? 'border-critical' : 'border-transparent')}
+        className={cx('grid grid-cols-2 gap-1 rounded-md border-[1.5px] bg-navy-900/[0.06] p-1', error ? 'border-critical' : 'border-transparent')}
       >
         {options.map((o) => {
           const checked = value === o.value
@@ -122,7 +122,7 @@ export function RoleSelect({ name, label = 'I am a', value, onChange, required, 
               <span
                 className={cx(
                   'flex min-h-10 items-center justify-center gap-2 rounded-sm px-3 text-sm font-semibold transition-[background-color,color,box-shadow] duration-240 ease-standard peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-blue-600',
-                  checked ? 'bg-white text-navy-900 shadow-sm' : 'text-gray-700 hover:text-navy-900',
+                  checked ? 'bg-white text-navy-900 shadow-[0_2px_10px_rgb(0_0_100/0.1)]' : 'text-gray-700 hover:text-navy-900',
                 )}
               >
                 <Icon name={o.icon} size={18} className={checked ? o.accent : undefined} />

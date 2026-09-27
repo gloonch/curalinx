@@ -2,9 +2,9 @@ import Icon from './Icon'
 import cx from '../lib/cx'
 
 const ICON_TILE = {
-  blue: 'bg-blue-100 text-blue-600',
-  teal: 'bg-teal-100 text-teal-700',
-  navy: 'bg-navy-100 text-navy-900',
+  blue: 'bg-blue-100/80 text-blue-700 ring-1 ring-white/70',
+  teal: 'bg-teal-100/80 text-teal-800 ring-1 ring-white/70',
+  navy: 'bg-navy-100/80 text-navy-900 ring-1 ring-white/70',
 }
 const HOVER_BORDER = {
   blue: 'hover:border-blue-200',
@@ -18,8 +18,8 @@ export default function Card({ icon, title, description, accent = 'blue', intera
     <div
       style={style}
       className={cx(
-        'relative flex flex-col gap-3 rounded-lg border border-gray-200 bg-white p-7 shadow-sm transition-[transform,border-color,box-shadow] duration-250 ease-standard',
-        interactive && cx('hover:-translate-y-[3px] hover:shadow-md', HOVER_BORDER[accent]),
+        'glass relative flex flex-col gap-3 rounded-lg p-7',
+        interactive && cx('glass-hover', HOVER_BORDER[accent]),
         className,
       )}
     >
