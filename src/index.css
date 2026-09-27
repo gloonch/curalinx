@@ -93,6 +93,7 @@
   --animate-pulse-dot: pulse-dot 2s var(--ease-standard) infinite;
   --animate-cue: cue 2.2s var(--ease-standard) infinite;
   --animate-helix: helix 1400ms var(--ease-standard) infinite;
+  --animate-digit-in: digit-in 520ms var(--ease-soft-out) both;
 
   @keyframes panel-in {
     from { opacity: 0; transform: translateY(12px); }
@@ -107,6 +108,10 @@
     60% { transform: scaleY(1); opacity: 1; }
     100% { transform: scaleY(1); opacity: 0; }
   }
+  @keyframes digit-in {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: none; opacity: 1; }
+  }
   @keyframes helix {
     0%, 100% { transform: scaleX(1); }
     50% { transform: scaleX(-1); }
@@ -116,11 +121,12 @@
 :root {
   --gradient-brand: linear-gradient(90deg, var(--color-navy-900) 0%, var(--color-blue-600) 55%, var(--color-teal-500) 100%);
   --nav-h: 64px;
-  --logo-hero: 140px;
+  --sub-h: calc(var(--nav-h) / 3); /* live-estimate strip under the navbar */
+  --logo-hero: 240px;
   color-scheme: light;
 }
 @media (width >= 768px) {
-  :root { --logo-hero: clamp(160px, 22vw, 260px); }
+  :root { --logo-hero: clamp(280px, 36vw, 460px); }
 }
 @media (width >= 900px) {
   :root { --nav-h: 76px; }
@@ -151,6 +157,12 @@
   line-height: 0.98;
   font-weight: 800;
   letter-spacing: -0.035em;
+}
+/* Hero live number: the logo is 1.5× the height of these digits */
+@utility type-stat-hero {
+  font-size: calc(var(--logo-hero) * 0.178);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 @utility type-display {
   font-size: 40px;

@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react'
 
-export const LOGO_ASPECT = 1089 / 209
-
 // Time constant (ms) of the easing that chases the scroll target. Keeps the
 // transition visible even when a single wheel flick jumps past `distance`.
 const TAU = 130
 
 /**
- * Hero → Navbar logo transformation.
- * ONE logo element travels: it is measured against an empty slot in the Hero
- * and an empty slot in the Navbar, and scroll progress drives translate + scale.
+ * Hero → header transformations driven by one scroll progress (0 → 1).
+ * Each pair moves ONE fixed element (`el`) from the `from` slot to the `to`
+ * slot with translate + scale (`fit`: match the slot's width or height).
+ * With `swap`, the slots themselves are shown at the two ends (crisp text)
+ * and the travelling copy only in between.
  * The rendered progress eases toward the scroll target every frame, so fast
- * scrolls still animate. Scrolling back to the top reverses it. Returns progress (0 → 1).
+ * scrolls still animate. Scroll-linked (the visitor drives it), so it also
+ * runs under reduced motion. Returns progress.
  */
-export default function useLogoMorph({ heroSlotRef, navSlotRef, logoRef, distance = 300 }) {
+export default function useScrollMorph({ pairs, distance = 300 }) {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
@@ -21,32 +22,40 @@ export default function useLogoMorph({ heroSlotRef, navSlotRef, logoRef, distanc
     let last = 0
     let t = null
 
-    // Scroll-linked (the visitor drives it), so it also runs under reduced motion.
     const target = () => Math.min(1, Math.max(0, window.scrollY / distance))
 
     const apply = () => {
-      const logo = logoRef.current
-      const heroSlot = heroSlotRef.current
-      const navSlot = navSlotRef.current
-      if (!logo || !heroSlot || !navSlot) return
-
       // Scale + vertical: ease-in-out cubic. Horizontal leads slightly so the path arcs.
       const e = t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2
       const ex = 1 - Math.pow(1 - t, 2.2)
 
-      const a = heroSlot.getBoundingClientRect()
-      const b = navSlot.getBoundingClientRect()
-      const bh = b.width / LOGO_ASPECT
-      const bx = b.left
-      const by = b.top + (b.height - bh) / 2
+      for (const { el: elRef, from: fromRef, to: toRef, fit = 'width', swap = false } of pairs) {
+        const el = elRef.current
+        const from = fromRef.current
+        const to = toRef.current
+        if (!el || !from || !to) continue
 
-      const x = a.left + (bx - a.left) * ex
-      const y = a.top + (by - a.top) * e
-      const s = (a.width + (b.width - a.width) * e) / a.width
+        const a = from.getBoundingClientRect()
+        const b = to.getBoundingClientRect()
+        if (!a.width || !a.height) continue
+        const s = fit === 'height' ? b.height / a.height : b.width / a.width
+        const bx = b.left
+        const by = b.top + (b.height - a.height * s) / 2
 
-      logo.style.width = `${a.width}px`
-      logo.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${s.toFixed(4)})`
-      logo.style.visibility = 'visible'
+        const x = a.left + (bx - a.left) * ex
+        const y = a.top + (by - a.top) * e
+        const k = 1 + (s - 1) * e
+
+        el.style.width = `${a.width}px`
+        el.style.transform = `translate3d(${x.toFixed(2)}px, ${y.toFixed(2)}px, 0) scale(${k.toFixed(4)})`
+        if (swap) {
+          from.style.visibility = t === 0 ? 'visible' : 'hidden'
+          to.style.visibility = t === 1 ? 'visible' : 'hidden'
+          el.style.visibility = t > 0 && t < 1 ? 'visible' : 'hidden'
+        } else {
+          el.style.visibility = 'visible'
+        }
+      }
       setProgress(t)
     }
 
@@ -85,7 +94,7 @@ export default function useLogoMorph({ heroSlotRef, navSlotRef, logoRef, distanc
       window.removeEventListener('scroll', schedule)
       window.removeEventListener('resize', remeasure)
     }
-  }, [heroSlotRef, navSlotRef, logoRef, distance])
+  }, [pairs, distance])
 
   return progress
 }

@@ -11,8 +11,20 @@ export const NAV_LINKS = [
 const LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 const LOREM_S = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 
+// Live estimates: annual global incidence spread evenly over the year, counted
+// from 00:00 UTC so every visitor sees the same worldwide number.
 export const HERO = {
-  heading: 'Main Heading Placeholder',
+  heading: 'Every second, health changes.',
+  today: 'worldwide today',
+  sinceShort: 'since 00:00 UTC',
+  live: 'Live estimate',
+  note: 'Estimated from annual global incidence spread evenly over the year; not a real-time count.',
+  stats: [
+    { id: 'respiratory', label: 'new chronic respiratory disease cases', short: 'new respiratory disease cases', annual: 55_210_000, source: 'GBD 2021' },
+    { id: 'diabetes', label: 'new type 2 diabetes cases', short: 'new type 2 diabetes cases', annual: 23_900_000, source: 'GBD 2021' },
+    { id: 'cancer', label: 'new cancer cases', short: 'new cancer cases', annual: 20_000_000, source: 'WHO / IARC, GLOBOCAN 2022' },
+    { id: 'stroke', label: 'new stroke cases', short: 'new stroke cases', annual: 11_900_000, source: 'GBD 2021' },
+  ],
 }
 
 export const WHY = {

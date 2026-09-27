@@ -15,7 +15,7 @@ const LINK =
  * Sticky site header: logo slot (left), links (centre), Request a Demo (right).
  * Below 900px: logo + compact CTA + hamburger sheet.
  * On the landing page the logo slot stays empty (`logoHidden`) because the
- * Hero logo travels into it (see hooks/useLogoMorph).
+ * Hero logo travels into it (see hooks/useScrollMorph).
  */
 export default function Navbar({ logoHidden = false, logoSlotRef, scrolled = false }) {
   const [open, setOpen] = useState(false)
