@@ -7,6 +7,7 @@ import Reveal from '../components/Reveal'
 import SectionHead from '../components/SectionHead'
 import useResetWhenLeftAbove from '../hooks/useResetWhenLeftAbove'
 import cx from '../lib/cx'
+import logo from '../assets/logo.png'
 import { WHY } from '../content/site'
 
 /**
@@ -22,7 +23,17 @@ export default function WhyCuralinx() {
   return (
     <section ref={ref} id="why-curalinx" className="scroll-mt-nav bg-off-white py-20 md:py-24 xl:py-32">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-        <SectionHead eyebrow={WHY.eyebrow} title={WHY.title} intro={WHY.intro} />
+        <SectionHead
+          eyebrow={WHY.eyebrow}
+          title={
+            <>
+              Why{' '}
+              {/* Logo height ≈ cap height of the heading, sitting on its baseline */}
+              <img src={logo} alt="Curalinx" className="inline-block h-[0.74em] w-auto align-baseline" />
+            </>
+          }
+          intro={WHY.intro}
+        />
         <Reveal className="mt-8 flex justify-center">
           <AudienceTabs value={audience} onChange={setAudience} idBase="why" />
         </Reveal>
