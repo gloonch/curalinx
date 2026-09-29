@@ -8,7 +8,6 @@ import useScrollMorph from '../hooks/useScrollMorph'
 import { scrollToSection } from '../lib/scroll'
 import Hero from '../sections/Hero'
 import WhyCuralinx from '../sections/WhyCuralinx'
-import Plans from '../sections/Plans'
 import RequestDemo from '../sections/RequestDemo'
 import Newsletter from '../sections/Newsletter'
 import Contact from '../sections/Contact'
@@ -72,7 +71,6 @@ export default function Home() {
       <StatStrip live={live} numberRef={stripNumberRef} progress={progress} />
       <Hero slotRef={heroSlotRef} numberSlotRef={heroNumberRef} live={live} progress={progress} />
       <WhyCuralinx />
-      <Plans />
       <RequestDemo />
       <Newsletter />
       <Contact />

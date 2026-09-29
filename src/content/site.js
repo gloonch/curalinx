@@ -30,47 +30,116 @@ export const HERO = {
 export const WHY = {
   eyebrow: 'Why Curalinx',
   title: 'Why Curalinx',
-  intro: 'Choose your perspective to see how Curalinx works for you.',
+  // The problem (left) and how curalinX answers it (right).
+  story: {
+    problem: [
+      'Chronic conditions represent a significant burden on healthcare systems. Yet their management is still often centered around specific moments: an appointment, a prescription, a check-up.',
+      'Between appointments, patients continue to live with their condition: symptoms change, treatments continue, events occur and new information emerges.',
+      'Yet much of what happens during this time can remain fragmented or may not be available at the time of the visit.',
+    ],
+    quote: 'Care is episodic, but the chronic condition is continuous, and patients’ lives change every day.',
+    answerTitle: 'curalinX was created to bridge this gap.',
+    answer: [
+      'It creates digital continuity between what happens every day and what happens during the medical visit.',
+      'curalinX collects information throughout the patient’s care journey and organizes it into a structured overview, making the care journey more organized and easier to share between patients with a chronic condition and private healthcare professionals.',
+    ],
+  },
+  prompt: 'Choose your perspective to see how curalinX works for you.',
   empty: 'Curalinx connects patients, health data and doctors. Pick a side above to see the details.',
+  plansEyebrow: 'Plans',
+  plansTitle: 'Choose your plan',
   patient: {
     badge: 'For patients',
-    title: 'Your health, connected',
-    intro: LOREM,
+    title: 'Your care journey, always with you',
+    intro: [
+      'curalinX supports you between appointments and stays with you throughout your healthcare journey. It helps you organize your information over time, find what matters when you need it, and share it with your healthcare professionals.',
+    ],
     cards: [
-      { icon: 'file-text', title: 'All your records together', text: LOREM_S },
-      { icon: 'share-2', title: 'Share on your terms', text: LOREM_S },
-      { icon: 'bell', title: 'Timely reminders', text: LOREM_S },
-      { icon: 'shield-check', title: 'Private by default', text: LOREM_S },
-      { icon: 'activity', title: 'Track what matters', text: LOREM_S },
-      { icon: 'calendar', title: 'Easier appointments', text: LOREM_S },
+      { icon: 'file-text', title: 'Complete Tracking', text: 'Record symptoms, treatments, medical reports, visit summaries, tests, and relevant events. Your information is organized over time, giving you a complete and organized view of your care journey.' },
+      { icon: 'calendar', title: 'Appointments', text: 'Add appointments you have already scheduled, even when booked through other channels, or access the appointment options available through curalinX.' },
+      { icon: 'bell', title: 'Reminders', text: 'Receive reminders to take your medication, when your medication is running low, and for upcoming appointments and tests.' },
+      { icon: 'star', title: 'Keep Track of What Matters', text: 'Choose the information you want to pay closer attention to and quickly access the elements that are most relevant to your care journey.' },
+      { icon: 'share-2', title: 'Sharing', text: 'Create a structured summary of your care journey and share it with your healthcare professional, with your consent.' },
+      { icon: 'shield-check', title: 'Privacy', text: 'Your healthcare information is managed with respect for your privacy and your choices regarding how your data is managed and shared.' },
+    ],
+    plans: [
+      {
+        name: 'Basic',
+        description: 'Everything you need to organize your healthcare journey.',
+        features: [
+          'Record symptoms and events',
+          'Manage medications and treatments',
+          'Reminders of appointments and tests',
+          'Healthcare timeline',
+          'Share information with healthcare professionals',
+        ],
+        ctaLabel: 'Get Started',
+        ctaSection: 'request-demo',
+      },
+      {
+        name: 'Pro',
+        description: 'More flexibility and convenience for managing your healthcare journey.',
+        features: [
+          'Everything included in the Basic Plan',
+          { title: 'Family & Caregiver Access', text: 'Invite a family member or caregiver to take part in managing the patient’s healthcare journey.' },
+          { title: 'Voice Assistance', text: 'Record symptoms, events, and other information about your healthcare journey by voice, without having to type.' },
+          { title: 'Photo Uploads', text: 'Add photos to your records to visually document information you want to keep as part of your healthcare journey.' },
+        ],
+        ctaLabel: 'Get Started',
+        ctaSection: 'request-demo',
+        featured: true,
+      },
     ],
   },
   doctor: {
     badge: 'For doctors',
-    title: 'Full context before every visit',
-    intro: LOREM,
+    title: 'More time for the patient, less time reconstructing their history',
+    intro: [
+      'During each appointment, part of the time may be spent reconstructing what has happened since the previous visit: symptoms, treatments, events, and other information reported by the patient. Patients may not always remember every event that occurred during this period.',
+      'curalinX organizes this information over time and makes it available during the appointment, with the patient’s consent.',
+      'This allows healthcare professionals to review the patient’s reported history more efficiently and dedicate more time to discussion and their professional work.',
+    ],
     cards: [
-      { icon: 'timeline', title: 'One patient timeline', text: LOREM_S },
-      { icon: 'chart-column', title: 'Trends at a glance', text: LOREM_S },
-      { icon: 'database', title: 'Structured health data', text: LOREM_S },
-      { icon: 'lock', title: 'Secure access', text: LOREM_S },
-      { icon: 'link', title: 'Connected to your workflow', text: LOREM_S },
-      { icon: 'user-check', title: 'Better-prepared visits', text: LOREM_S },
+      { icon: 'calendar', title: 'Appointments & Scheduling', text: 'Manage appointment requests and view the reason for the visit provided by the patient when making the request.' },
+      { icon: 'clipboard-list', title: 'Visit Preparation', text: 'Share practical guidance with patients about what to bring to the appointment, which documents they may need, or how to prepare.' },
+      { icon: 'user-check', title: 'Patient Summary', text: 'With the patient’s consent, view information recorded between appointments, including symptoms, medications, events, and changes reported by the patient.' },
+      { icon: 'chart-column', title: 'Timeline & Charts', text: 'View information shared by the patient through charts organized over time, making it easier to review.' },
+      { icon: 'sliders-horizontal', title: 'Personalization', text: 'Filter and select the information you want to view, choosing which elements to see first during your review.' },
+      { icon: 'monitor-smartphone', title: 'Safe Access', text: 'Access curalinX from your computer, tablet, or smartphone, whether at the practice or remotely, without installing software. Information is managed with respect for privacy.' },
+    ],
+    plans: [
+      {
+        name: 'Individual Doctor',
+        description: 'For a single private healthcare professional.',
+        features: [
+          'Access to the professional portal',
+          'Patient healthcare journey summary',
+          'Information timeline',
+          'Charts and visualizations',
+          'Filters and customization',
+          'Appointments & Scheduling',
+        ],
+        ctaLabel: 'Get Started',
+        ctaSection: 'request-demo',
+      },
+      {
+        name: 'Private Practice',
+        description: 'For up to 5 healthcare professionals.',
+        features: [
+          'Portal access with separate dashboards',
+          'Patient healthcare journey summary',
+          'Information timeline',
+          'Charts and visualizations',
+          'Filters and customization',
+          'Role and permission management',
+          'Appointments & Scheduling',
+        ],
+        ctaLabel: 'Get Started',
+        ctaSection: 'request-demo',
+        featured: true,
+      },
     ],
   },
-}
-
-const FEATURES = ['Lorem ipsum dolor sit amet', 'Consectetur adipiscing elit', 'Sed do eiusmod tempor', 'Ut enim ad minim veniam', 'Quis nostrud exercitation', 'Duis aute irure dolor']
-
-export const PLANS = {
-  eyebrow: 'Plans',
-  title: 'Choose Your Plan',
-  intro: 'Placeholder pricing. Every plan can show a name, price, billing period, description, features and a call to action.',
-  items: [
-    { name: 'Plan One', price: '00', period: '/ month', description: LOREM_S, features: FEATURES.slice(0, 3), ctaLabel: 'Get Started', ctaSection: 'request-demo' },
-    { name: 'Plan Two', price: '00', period: '/ month', description: LOREM_S, features: FEATURES.slice(0, 5), ctaLabel: 'Get Started', ctaSection: 'request-demo', featured: true },
-    { name: 'Plan Three', price: '00', period: '/ month', description: LOREM_S, features: FEATURES, ctaLabel: 'Contact Sales', ctaSection: 'contact' },
-  ],
 }
 
 export const DEMO = {
