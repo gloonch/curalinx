@@ -10,9 +10,9 @@ export default function App() {
       <Route element={<SiteLayout />}>
         <Route index element={<Home />} />
         <Route path="about" element={<About />} />
-        <Route path="privacy" element={<SimplePage eyebrow="Legal" title="Privacy Policy" text="Our privacy policy will be published here." />} />
-        <Route path="terms" element={<SimplePage eyebrow="Legal" title="Terms of Service" text="Our terms of service will be published here." />} />
-        <Route path="*" element={<SimplePage eyebrow="404" title="Page not found" text="The page you are looking for does not exist or has moved." />} />
+        <Route path="privacy" element={<SimplePage page="privacy" />} />
+        <Route path="terms" element={<SimplePage page="terms" />} />
+        <Route path="*" element={<SimplePage page="notFound" />} />
       </Route>
     </Routes>
   )

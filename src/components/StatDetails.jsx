@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import cx from '../lib/cx'
-import { HERO } from '../content/site'
+import { useContent } from '../i18n'
 
 const OPEN_MS = 3000
 
@@ -9,6 +9,7 @@ const OPEN_MS = 3000
  * with the full details, which hides again after 3s.
  */
 export default function StatDetails({ stat, className, ref, children }) {
+  const { hero } = useContent()
   const [open, setOpen] = useState(false)
   const timer = useRef(0)
 
@@ -27,7 +28,7 @@ export default function StatDetails({ stat, className, ref, children }) {
         onFocus={show}
         onClick={show}
         aria-expanded={open}
-        aria-label={`${HERO.live}: ${stat.title}`}
+        aria-label={`${hero.live}: ${stat.title}`}
         className="inline-flex cursor-help rounded-xs"
       >
         {children}
@@ -42,7 +43,7 @@ export default function StatDetails({ stat, className, ref, children }) {
       >
         <span className="flex items-center gap-2 text-[11px] font-bold tracking-[0.14em] text-teal-700 uppercase">
           <span className="size-1.5 rounded-full bg-teal-500" />
-          {HERO.live}
+          {hero.live}
         </span>
         <span className="mt-2 block text-sm font-semibold text-navy-900">{stat.title}</span>
         <span className="mt-3 grid gap-1.5 text-[13px] text-gray-900">

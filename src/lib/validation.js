@@ -1,8 +1,9 @@
 export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
-export function validateEmail(value) {
+/** `msgs`: { emailRequired, emailInvalid } from the current language (content form.*). */
+export function validateEmail(value, msgs) {
   const v = (value || '').trim()
-  if (!v) return 'Email address is required.'
-  if (!EMAIL_RE.test(v)) return 'Enter a valid email address, like name@example.com.'
+  if (!v) return msgs.emailRequired
+  if (!EMAIL_RE.test(v)) return msgs.emailInvalid
   return null
 }

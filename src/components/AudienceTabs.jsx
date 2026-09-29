@@ -1,17 +1,18 @@
 import Icon from './Icon'
 import cx from '../lib/cx'
-import { WHY } from '../content/site'
+import { useContent } from '../i18n'
 
 const ITEMS = [
-  { value: 'patient', label: WHY.patient.tab, icon: 'user', idle: 'text-teal-700' },
-  { value: 'doctor', label: WHY.doctor.tab, icon: 'user-check', idle: 'text-blue-600' },
+  { value: 'patient', icon: 'user', idle: 'text-teal-700' },
+  { value: 'doctor', icon: 'user-check', idle: 'text-blue-600' },
 ]
 
 /**
  * "I'm a Patient / I'm a Doctor" switch for Why Curalinx.
  * Starts with nothing selected (value === null).
  */
-export default function AudienceTabs({ value, onChange, idBase = 'why', hint = 'Select one to continue.' }) {
+export default function AudienceTabs({ value, onChange, idBase = 'why', hint }) {
+  const { why } = useContent()
   const onKeyDown = (e) => {
     if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return
     e.preventDefault()
@@ -31,7 +32,7 @@ export default function AudienceTabs({ value, onChange, idBase = 'why', hint = '
     <div className="flex w-full flex-col items-center sm:w-auto">
       <div
         role="tablist"
-        aria-label="Choose your perspective"
+        aria-label={why.tabsLabel}
         onKeyDown={onKeyDown}
         className="glass-subtle relative grid w-full grid-cols-2 gap-1.5 rounded-lg p-1.5 shadow-[0_8px_28px_rgb(0_0_100/0.08)] sm:inline-grid sm:w-auto"
       >
@@ -60,7 +61,7 @@ export default function AudienceTabs({ value, onChange, idBase = 'why', hint = '
               )}
             >
               <Icon name={it.icon} size={20} className={selected ? 'text-white' : it.idle} />
-              {it.label}
+              {why[it.value].tab}
             </button>
           )
         })}

@@ -1,6 +1,7 @@
 import { useId } from 'react'
 import Icon from './Icon'
 import cx from '../lib/cx'
+import { useContent } from '../i18n'
 
 const CONTROL =
   'w-full min-h-12 rounded-md border-[1.5px] bg-white/80 backdrop-blur-sm focus:bg-white px-3.5 py-3 text-base leading-snug text-gray-900 shadow-xs outline-none transition-[border-color,box-shadow] duration-180 ease-standard placeholder:text-gray-600 appearance-none'
@@ -12,6 +13,7 @@ function controlState(error, success) {
 }
 
 export function FieldLabel({ htmlFor, id, required, optional, children }) {
+  const { form } = useContent()
   const Tag = htmlFor ? 'label' : 'span'
   return (
     <Tag htmlFor={htmlFor} id={id} className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-sm font-semibold leading-tight text-navy-900">
@@ -19,7 +21,7 @@ export function FieldLabel({ htmlFor, id, required, optional, children }) {
         {children}
         {required && <span className="text-critical" aria-hidden="true"> *</span>}
       </span>
-      {optional && <span className="text-xs font-medium text-gray-700">Optional</span>}
+      {optional && <span className="text-xs font-medium text-gray-700">{form.optional}</span>}
     </Tag>
   )
 }

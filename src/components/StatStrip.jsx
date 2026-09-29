@@ -1,6 +1,5 @@
 import LiveNumber from './LiveNumber'
 import StatDetails from './StatDetails'
-import { HERO } from '../content/site'
 
 /**
  * Compact live estimate pinned under the navbar (1/3 of its height). The Hero

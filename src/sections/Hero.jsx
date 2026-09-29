@@ -2,7 +2,7 @@ import LiveNumber from '../components/LiveNumber'
 import Ribbon from '../components/Ribbon'
 import SectionLink from '../components/SectionLink'
 import StatDetails from '../components/StatDetails'
-import { HERO } from '../content/site'
+import { useContent } from '../i18n'
 
 /**
  * Hero: an EMPTY logo slot above the live incidence estimate. The visible logo
@@ -10,6 +10,7 @@ import { HERO } from '../content/site'
  * them into the navbar and the strip below it (see hooks/useScrollMorph).
  */
 export default function Hero({ slotRef, numberSlotRef, live, progress }) {
+  const { hero } = useContent()
   const fade = { opacity: Math.max(0, 1 - progress * 2.4), transform: `translateY(${(-progress * 24).toFixed(1)}px)` }
 
   return (
@@ -27,11 +28,11 @@ export default function Hero({ slotRef, numberSlotRef, live, progress }) {
 
         <h1 className="type-eyebrow eyebrow-pill m-0 mt-12 text-blue-700 md:mt-16" style={fade}>
           <span className="size-1.5 rounded-full bg-blue-600" aria-hidden="true" />
-          {HERO.live}
+          {hero.live}
         </h1>
 
         <p className="sr-only">
-          {HERO.live}: {live.value} {live.stat.title}. {live.stat.counted}. {live.stat.source}.
+          {hero.live}: {live.value} {live.stat.title}. {live.stat.counted}. {live.stat.source}.
         </p>
 
         <StatDetails ref={numberSlotRef} stat={live.stat} className="mt-4">
@@ -56,11 +57,11 @@ export default function Hero({ slotRef, numberSlotRef, live, progress }) {
 
       <SectionLink
         id="why-curalinx"
-        aria-label="Scroll to Why Curalinx"
+        aria-label={hero.scrollLabel}
         className="absolute bottom-7 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2.5 text-[11px] font-semibold tracking-[0.16em] text-navy-900 uppercase no-underline"
         style={{ opacity: Math.max(0, 1 - progress * 3) }}
       >
-        <span>{HERO.scroll}</span>
+        <span>{hero.scroll}</span>
         <i className="block h-9 w-[1.5px] origin-top animate-cue rounded-full bg-linear-to-b from-blue-600 to-transparent" />
       </SectionLink>
     </section>

@@ -8,7 +8,7 @@ import useResetWhenLeftAbove from '../hooks/useResetWhenLeftAbove'
 import cx from '../lib/cx'
 import { scrollToSection } from '../lib/scroll'
 import logo from '../assets/logo.png'
-import { WHY } from '../content/site'
+import { useContent } from '../i18n'
 
 /**
  * Why Curalinx: the problem and how curalinX answers it, then the
@@ -18,6 +18,7 @@ import { WHY } from '../content/site'
  * "#plans" points at the plans when a side is open, otherwise at the tabs.
  */
 export default function WhyCuralinx() {
+  const { why: WHY } = useContent()
   const ref = useRef(null)
   const [audience, setAudience] = useState(null)
   useResetWhenLeftAbove(ref, () => setAudience(null))
@@ -30,7 +31,8 @@ export default function WhyCuralinx() {
         {/* "why curalinX?" with the logo as the word; logo height ≈ cap height, on the baseline */}
         <Reveal className="mx-auto max-w-[760px] text-center">
           <h2 className="type-h1 m-0 text-navy-900">
-            why <img src={logo} alt="curalinX" className="inline-block h-[0.74em] w-auto align-baseline" />?
+            {WHY.titleBefore} <img src={logo} alt="curalinX" className="inline-block h-[0.74em] w-auto align-baseline" />
+            {WHY.titleAfter}
           </h2>
         </Reveal>
 
@@ -110,7 +112,7 @@ export default function WhyCuralinx() {
           </div>
         ) : (
           <div className="mt-10 grid justify-items-center gap-4 glass-subtle rounded-2xl border-dashed! border-navy-900/15! p-6 text-center md:p-12">
-            <DataFlow className="hidden w-full max-w-[760px] md:block" />
+            <DataFlow labels={WHY.flow} className="hidden w-full max-w-[760px] md:block" />
             <p className="m-0 max-w-[44ch] text-sm leading-relaxed text-gray-900">{WHY.empty}</p>
           </div>
         )}

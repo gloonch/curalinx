@@ -40,7 +40,7 @@ Navbar items **Why Curalinx**, **Plans**, **Contact Us** and **Request a Demo** 
 
 ## Key interactions
 
-- **Hero → Navbar logo** (`src/hooks/useLogoMorph.js`): one logo element shrinks and arcs from the Hero into the navbar as you scroll, and reverses at the top. The heading fades as it passes. It works on mobile too. The About page has no animation; the logo is simply in the navbar.
+- **Hero → Navbar logo and live estimate** (`src/hooks/useScrollMorph.js`): as you scroll, the logo shrinks and arcs from the Hero into the navbar, and the live number moves into the strip under it; both reverse at the top. It works on mobile too. The About page has no animation; the logo is simply in the navbar.
 - **Why Curalinx reset** (`src/hooks/useResetWhenLeftAbove.js`): no tab is selected on entry. The choice stays while you scroll down and resets when you scroll back up above the section.
 - **Forms** (`src/sections/RequestDemo.jsx`, `Contact.jsx`, `components/NewsletterSignup.jsx`): client-side validation with messages under each field. They are **not connected to a backend yet**; look for the `TODO` comments where the submit should call your API.
 
@@ -63,8 +63,8 @@ Opacity levels were measured against the strongest point of the aurora so text k
 
 | To change | Edit |
 |---|---|
-| Any text (headings, plans, team, contact details) | `src/content/site.js` |
-| Team photos | Put images in `public/team/` and add `photo: '/team/name.jpg'` to each member in `src/content/site.js` |
+| Any text (headings, plans, team, contact details) | `src/content/en.js` (English) and `src/content/it.js` (Italian); keep both in step |
+| Team photos | Put images in `public/team/` and add `photo: '/team/name.jpg'` to each member (`about.team`) in both `src/content/en.js` and `src/content/it.js` |
 | Colours, fonts, radii, shadows | The `@theme` block in `src/index.css` |
 | Glass strength or aurora colours | The *Glassmorphism* section of `src/index.css` |
 | Logo | `src/assets/logo.png` (navbar/hero) and `src/assets/logo-reversed.png` (footer) |
@@ -80,9 +80,11 @@ src/
   pages/              # Home, About, SimplePage
   sections/           # landing page sections
   components/         # Button, Field, AudienceTabs, PricingCard, Navbar, Footer, Ribbon, DataFlow…
-  hooks/              # useLogoMorph, useResetWhenLeftAbove, useScrolled
-  content/site.js     # all copy
+  hooks/              # useScrollMorph, useLiveEstimate, useResetWhenLeftAbove, useScrolled
+  content/en.js       # all copy, English
+  content/it.js       # all copy, Italian (same keys)
+  i18n.jsx            # language provider + useContent()
 design-system/        # brand book, tokens and assets (reference)
 ```
 
-All user-facing text is in English.
+The site is available in English and Italian. The EN | IT switch sits in the navbar (in the menu on mobile); the choice is remembered in the browser, and a first visit follows the browser language (Italian → Italian, otherwise English).

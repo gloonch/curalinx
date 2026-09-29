@@ -2,13 +2,16 @@ import { useEffect } from 'react'
 import Reveal from '../components/Reveal'
 import Ribbon from '../components/Ribbon'
 import TeamMemberCard from '../components/TeamMemberCard'
-import { ABOUT, TEAM } from '../content/site'
+import { useContent } from '../i18n'
 
 /** About Us: no logo animation, the logo sits in the navbar from the start. */
 export default function About() {
+  const { about: ABOUT } = useContent()
+  const TEAM = ABOUT.team
+
   useEffect(() => {
-    document.title = 'About Us · Curalinx'
-  }, [])
+    document.title = `${ABOUT.docTitle} · Curalinx`
+  }, [ABOUT.docTitle])
 
   const firstRow = TEAM.slice(0, 2)
   const secondRow = TEAM.slice(2)
@@ -37,7 +40,7 @@ export default function About() {
         </div>
       </section>
 
-      <section aria-label="Team members" className="pt-12 pb-20 md:pb-24 xl:pb-32">
+      <section aria-label={ABOUT.teamLabel} className="pt-12 pb-20 md:pb-24 xl:pb-32">
         <div className="mx-auto grid max-w-[1200px] gap-12 px-4 md:gap-16 md:px-8">
           {/* Row 1: two members, centred, same card width as row 2 */}
           <div className="mx-auto grid w-full grid-cols-1 gap-12 sm:grid-cols-2 sm:gap-8 lg:w-[calc((100%_-_64px)/3*2_+_32px)]">

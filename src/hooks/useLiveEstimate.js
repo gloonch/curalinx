@@ -1,10 +1,8 @@
-import { useEffect, useState } from 'react'
-import { HERO } from '../content/site'
+import { useEffect, useMemo, useState } from 'react'
+import { useContent } from '../i18n'
 
 const TICK_MS = 2000
 const TICKS_PER_STAT = 4 // each statistic stays for 8s
-
-const fmt = new Intl.NumberFormat('en-US')
 
 /**
  * Live incidence estimate shared by the Hero and the header strip.
@@ -13,6 +11,8 @@ const fmt = new Intl.NumberFormat('en-US')
  * rotates to the next statistic every 8s.
  */
 export default function useLiveEstimate() {
+  const { hero, locale } = useContent()
+  const fmt = useMemo(() => new Intl.NumberFormat(locale), [locale])
   const [origin] = useState(() => {
     const now = new Date()
     const midnight = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
@@ -27,6 +27,6 @@ export default function useLiveEstimate() {
     return () => clearInterval(id)
   }, [origin])
 
-  const stat = HERO.stats[Math.floor(state.tick / TICKS_PER_STAT) % HERO.stats.length]
+  const stat = hero.stats[Math.floor(state.tick / TICKS_PER_STAT) % hero.stats.length]
   return { stat, tick: state.tick, value: fmt.format(Math.floor(stat.perSecond * state.elapsed)) }
 }

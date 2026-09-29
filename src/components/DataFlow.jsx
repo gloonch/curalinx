@@ -16,14 +16,16 @@ const ICON_COLOR = {
 }
 
 /** Patient → Health Data → Curalinx → Doctor, joined by curved paths with a travelling pulse. */
-export default function DataFlow({ nodes = DEFAULT_NODES, animated = true, className }) {
+/** `labels` ([{ label, sub }] in node order) overrides the default wording. */
+export default function DataFlow({ labels, animated = true, className }) {
+  const nodes = labels ? DEFAULT_NODES.map((n, i) => ({ ...n, ...labels[i] })) : DEFAULT_NODES
   const gid = `df${useId().replace(/[^a-zA-Z0-9]/g, '')}`
   const W = 960, H = 220, pad = 90, cy = 84, R = 34
   const gap = (W - pad * 2) / (nodes.length - 1)
   const motion = animated && !prefersReducedMotion()
 
   return (
-    <div className={className} role="img" aria-label={nodes.map((n) => n.label).join(' to ')}>
+    <div className={className} role="img" aria-label={nodes.map((n) => n.label).join(' → ')}>
       <svg viewBox={`0 0 ${W} ${H}`} className="block h-auto w-full overflow-visible">
         <defs>
           <linearGradient id={gid} x1="0" x2="1">

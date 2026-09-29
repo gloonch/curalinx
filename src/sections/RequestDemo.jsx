@@ -7,13 +7,14 @@ import RibbonLoader from '../components/RibbonLoader'
 import SectionHead from '../components/SectionHead'
 import { RoleSelect, TextField } from '../components/Field'
 import { validateEmail } from '../lib/validation'
-import { DEMO } from '../content/site'
+import { useContent } from '../i18n'
 
-const F = DEMO.fields
 const EMPTY = { name: '', email: '', role: null, organization: '', phone: '', message: '' }
 
 /** The page's strongest conversion block. Separate from the newsletter. */
 export default function RequestDemo() {
+  const { demo: DEMO, form } = useContent()
+  const F = DEMO.fields
   const [values, setValues] = useState(EMPTY)
   const [errors, setErrors] = useState({})
   const [status, setStatus] = useState('idle') // idle | sending | done
@@ -27,10 +28,10 @@ export default function RequestDemo() {
   const submit = (e) => {
     e.preventDefault()
     const next = {
-      name: values.name.trim() ? null : 'Enter your full name.',
-      email: validateEmail(values.email),
-      role: values.role ? null : 'Select Doctor or Patient.',
-      message: values.message.trim() ? null : 'Tell us briefly what you would like to see.',
+      name: values.name.trim() ? null : DEMO.errors.name,
+      email: validateEmail(values.email, form),
+      role: values.role ? null : DEMO.errors.role,
+      message: values.message.trim() ? null : DEMO.errors.message,
     }
     setErrors(next)
     const first = ['name', 'email', 'role', 'message'].find((k) => next[k])
@@ -63,12 +64,12 @@ export default function RequestDemo() {
           {status === 'done' ? (
             <div role="status" className="grid justify-items-center gap-2.5 py-10 text-center text-success">
               <Icon name="circle-check" size={44} />
-              <h3 className="type-h3 mt-1.5 mb-0 text-navy-900">Request received</h3>
-              <p className="mt-0 mb-3 max-w-[40ch] text-gray-700">Thank you. We will contact you within one business day to schedule your demo.</p>
-              <Button variant="secondary" onClick={() => { setValues(EMPTY); setStatus('idle') }}>Send Another Request</Button>
+              <h3 className="type-h3 mt-1.5 mb-0 text-navy-900">{DEMO.done.title}</h3>
+              <p className="mt-0 mb-3 max-w-[40ch] text-gray-700">{DEMO.done.text}</p>
+              <Button variant="secondary" onClick={() => { setValues(EMPTY); setStatus('idle') }}>{DEMO.done.again}</Button>
             </div>
           ) : (
-            <form onSubmit={submit} noValidate aria-label="Request a Demo" className="grid grid-cols-1 gap-5 md:grid-cols-2">
+            <form onSubmit={submit} noValidate aria-label={DEMO.formLabel} className="grid grid-cols-1 gap-5 md:grid-cols-2">
               <TextField id="demo-name" label={F.name} required placeholder={F.namePlaceholder} autoComplete="name" value={values.name} onChange={set('name')} error={errors.name} />
               <TextField id="demo-email" type="email" label={F.email} required placeholder={F.emailPlaceholder} autoComplete="email" value={values.email} onChange={set('email')} error={errors.email} />
               <RoleSelect name="demo-role" label={F.role} labels={{ doctor: F.doctor, patient: F.patient }} required value={values.role} onChange={set('role')} error={errors.role} className="md:col-span-2" />
@@ -77,9 +78,9 @@ export default function RequestDemo() {
               <TextField id="demo-message" label={F.message} required multiline rows={4} placeholder={F.messagePlaceholder} value={values.message} onChange={set('message')} error={errors.message} className="md:col-span-2" />
               <div className="md:col-span-2">
                 {status === 'sending' ? (
-                  <div className="flex min-h-14 justify-center"><RibbonLoader label="Sending your request" /></div>
+                  <div className="flex min-h-14 justify-center"><RibbonLoader label={DEMO.sending} /></div>
                 ) : (
-                  <Button type="submit" size="lg" fullWidth iconRight="arrow-right">Request a Demo</Button>
+                  <Button type="submit" size="lg" fullWidth iconRight="arrow-right">{DEMO.submit}</Button>
                 )}
               </div>
               <p className="m-0 text-xs text-gray-700 md:col-span-2">{DEMO.consent}</p>
