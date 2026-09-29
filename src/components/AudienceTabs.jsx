@@ -1,9 +1,10 @@
 import Icon from './Icon'
 import cx from '../lib/cx'
+import { WHY } from '../content/site'
 
 const ITEMS = [
-  { value: 'patient', label: 'I’m a Patient', icon: 'user', idle: 'text-teal-700' },
-  { value: 'doctor', label: 'I’m a Doctor', icon: 'user-check', idle: 'text-blue-600' },
+  { value: 'patient', label: WHY.patient.tab, icon: 'user', idle: 'text-teal-700' },
+  { value: 'doctor', label: WHY.doctor.tab, icon: 'user-check', idle: 'text-blue-600' },
 ]
 
 /**

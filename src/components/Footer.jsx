@@ -3,7 +3,7 @@ import logoReversed from '../assets/logo-reversed.png'
 import Icon from './Icon'
 import Ribbon from './Ribbon'
 import SectionLink from './SectionLink'
-import { CONTACT, SOCIAL } from '../content/site'
+import { CONTACT, FOOTER, SOCIAL } from '../content/site'
 
 const LINK = 'inline-flex items-center gap-2.5 text-[15px] font-medium text-muted-inverse no-underline transition-colors duration-180 ease-standard hover:text-white'
 const HEAD = 'mb-4 text-[13px] font-bold tracking-[0.12em] text-white uppercase'
@@ -34,7 +34,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className={HEAD}>Company</h4>
+            <h4 className={HEAD}>{FOOTER.about}</h4>
             <ul className="m-0 grid list-none gap-3 p-0">
               <li><Link to="/about" className={LINK}>About Us</Link></li>
               <li><SectionLink id="contact" className={LINK}>Contact Us</SectionLink></li>
@@ -43,7 +43,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className={HEAD}>Product</h4>
+            <h4 className={HEAD}>{FOOTER.product}</h4>
             <ul className="m-0 grid list-none gap-3 p-0">
               <li><SectionLink id="why-curalinx" className={LINK}>Why Curalinx</SectionLink></li>
               <li><SectionLink id="plans" className={LINK}>Plans</SectionLink></li>
@@ -51,7 +51,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className={HEAD}>Contact</h4>
+            <h4 className={HEAD}>{FOOTER.contact}</h4>
             <ul className="m-0 grid list-none gap-3 p-0">
               <li><a href={`mailto:${CONTACT.email}`} className={LINK}><Icon name="mail" size={18} />{CONTACT.email}</a></li>
               <li><a href={`tel:${CONTACT.phone.replace(/[^+\d]/g, '')}`} className={LINK}><Icon name="phone" size={18} />{CONTACT.phone}</a></li>

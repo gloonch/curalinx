@@ -9,6 +9,7 @@ import { RoleSelect, TextField } from '../components/Field'
 import { validateEmail } from '../lib/validation'
 import { DEMO } from '../content/site'
 
+const F = DEMO.fields
 const EMPTY = { name: '', email: '', role: null, organization: '', phone: '', message: '' }
 
 /** The page's strongest conversion block. Separate from the newsletter. */
@@ -51,16 +52,10 @@ export default function RequestDemo() {
       <Ribbon width={1400} height={300} turns={1.25} opacity={0.12} strokeWidth={2} className="pointer-events-none absolute -bottom-10 -left-[10%] w-[120%]" />
       <div className="relative mx-auto grid max-w-[1200px] grid-cols-1 items-start gap-8 px-4 md:px-8 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
         <div>
-          <SectionHead align="left" eyebrow={DEMO.eyebrow} title={DEMO.title} intro={DEMO.intro} />
-          <Reveal as="ul" className="mt-9 mb-0 grid list-none gap-3.5 p-0">
-            {DEMO.perks.map((p) => (
-              <li key={p.icon} className="flex items-center gap-3 text-[15px] font-medium text-gray-900">
-                <span className="grid size-10 flex-none place-items-center glass-subtle rounded-md text-blue-700">
-                  <Icon name={p.icon} size={18} />
-                </span>
-                {p.text}
-              </li>
-            ))}
+          <SectionHead align="left" eyebrow={DEMO.eyebrow} title={DEMO.title} />
+          <Reveal className="mt-4 text-pretty">
+            <p className="type-body-lg m-0 font-bold text-navy-900">{DEMO.lead}</p>
+            <p className="type-body-lg mt-3 mb-0 text-gray-900">{DEMO.intro}</p>
           </Reveal>
         </div>
 
@@ -74,12 +69,12 @@ export default function RequestDemo() {
             </div>
           ) : (
             <form onSubmit={submit} noValidate aria-label="Request a Demo" className="grid grid-cols-1 gap-5 md:grid-cols-2">
-              <TextField id="demo-name" label="Full Name" required placeholder="Jane Cooper" autoComplete="name" value={values.name} onChange={set('name')} error={errors.name} />
-              <TextField id="demo-email" type="email" label="Email Address" required placeholder="name@example.com" autoComplete="email" value={values.email} onChange={set('email')} error={errors.email} />
-              <RoleSelect name="demo-role" label="I am a" required value={values.role} onChange={set('role')} error={errors.role} className="md:col-span-2" />
-              <TextField id="demo-organization" label="Organization" optional placeholder="Clinic, hospital or company" autoComplete="organization" value={values.organization} onChange={set('organization')} />
-              <TextField id="demo-phone" type="tel" label="Phone Number" optional placeholder="+1 000 000 0000" autoComplete="tel" value={values.phone} onChange={set('phone')} />
-              <TextField id="demo-message" label="Message" required multiline rows={4} placeholder="What would you like to see in the demo?" value={values.message} onChange={set('message')} error={errors.message} className="md:col-span-2" />
+              <TextField id="demo-name" label={F.name} required placeholder={F.namePlaceholder} autoComplete="name" value={values.name} onChange={set('name')} error={errors.name} />
+              <TextField id="demo-email" type="email" label={F.email} required placeholder={F.emailPlaceholder} autoComplete="email" value={values.email} onChange={set('email')} error={errors.email} />
+              <RoleSelect name="demo-role" label={F.role} labels={{ doctor: F.doctor, patient: F.patient }} required value={values.role} onChange={set('role')} error={errors.role} className="md:col-span-2" />
+              <TextField id="demo-organization" label={F.organization} autoComplete="organization" value={values.organization} onChange={set('organization')} />
+              <TextField id="demo-phone" type="tel" label={F.phone} placeholder={F.phonePlaceholder} autoComplete="tel" value={values.phone} onChange={set('phone')} />
+              <TextField id="demo-message" label={F.message} required multiline rows={4} placeholder={F.messagePlaceholder} value={values.message} onChange={set('message')} error={errors.message} className="md:col-span-2" />
               <div className="md:col-span-2">
                 {status === 'sending' ? (
                   <div className="flex min-h-14 justify-center"><RibbonLoader label="Sending your request" /></div>
@@ -87,7 +82,7 @@ export default function RequestDemo() {
                   <Button type="submit" size="lg" fullWidth iconRight="arrow-right">Request a Demo</Button>
                 )}
               </div>
-              <p className="m-0 text-xs text-gray-700 md:col-span-2">By submitting you agree to our Privacy Policy.</p>
+              <p className="m-0 text-xs text-gray-700 md:col-span-2">{DEMO.consent}</p>
             </form>
           )}
         </Reveal>

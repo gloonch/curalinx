@@ -5,7 +5,7 @@ import { TextField } from './Field'
 import { validateEmail } from '../lib/validation'
 
 /** Lightweight email capture, separate from the demo request form. */
-export default function NewsletterSignup({ title, text, onSubscribe }) {
+export default function NewsletterSignup({ title, text, emailLabel = 'Email Address', emailPlaceholder = 'Enter your email address', submitLabel = 'Subscribe', onSubscribe }) {
   const [email, setEmail] = useState('')
   const [error, setError] = useState(null)
   const [done, setDone] = useState(false)
@@ -35,8 +35,8 @@ export default function NewsletterSignup({ title, text, onSubscribe }) {
           <TextField
             id="newsletter-email"
             type="email"
-            label="Email Address"
-            placeholder="Enter your email address"
+            label={emailLabel}
+            placeholder={emailPlaceholder}
             autoComplete="email"
             value={email}
             onChange={(e) => {
@@ -46,7 +46,7 @@ export default function NewsletterSignup({ title, text, onSubscribe }) {
             error={error}
             className="flex-1"
           />
-          <Button type="submit" className="md:mt-[29px]">Subscribe</Button>
+          <Button type="submit" className="md:mt-[29px]">{submitLabel}</Button>
         </form>
       )}
     </section>

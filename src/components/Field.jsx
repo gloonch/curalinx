@@ -89,14 +89,14 @@ export function Select({ id, label, required, optional, hint, error, options = [
 }
 
 /** Segmented "I am a Doctor / Patient" picker (radiogroup). Nothing is preselected. */
-export function RoleSelect({ name, label = 'I am a', value, onChange, required, error, className }) {
+export function RoleSelect({ name, label = 'I am a', labels = { doctor: 'Doctor', patient: 'Patient' }, value, onChange, required, error, className }) {
   const autoId = useId()
   const groupName = name || `role-${autoId}`
   const labelId = `${groupName}-label`
   const msgId = `${groupName}-msg`
   const options = [
-    { value: 'doctor', label: 'Doctor', icon: 'user-check', accent: 'text-blue-600' },
-    { value: 'patient', label: 'Patient', icon: 'user', accent: 'text-teal-700' },
+    { value: 'doctor', label: labels.doctor, icon: 'user-check', accent: 'text-blue-600' },
+    { value: 'patient', label: labels.patient, icon: 'user', accent: 'text-teal-700' },
   ]
   return (
     <div className={cx('flex min-w-0 flex-col gap-2', className)}>

@@ -1,11 +1,9 @@
 import { useRef, useState } from 'react'
 import AudienceTabs from '../components/AudienceTabs'
-import Badge from '../components/Badge'
 import Card from '../components/Card'
 import DataFlow from '../components/DataFlow'
 import PricingCard from '../components/PricingCard'
 import Reveal from '../components/Reveal'
-import SectionHead from '../components/SectionHead'
 import useResetWhenLeftAbove from '../hooks/useResetWhenLeftAbove'
 import cx from '../lib/cx'
 import { scrollToSection } from '../lib/scroll'
@@ -29,16 +27,12 @@ export default function WhyCuralinx() {
   return (
     <section ref={ref} id="why-curalinx" className="scroll-mt-nav py-20 md:py-24 xl:py-32">
       <div className="mx-auto max-w-[1200px] px-4 md:px-8">
-        <SectionHead
-          eyebrow={WHY.eyebrow}
-          title={
-            <>
-              Why{' '}
-              {/* Logo height ≈ cap height of the heading, sitting on its baseline */}
-              <img src={logo} alt="Curalinx" className="inline-block h-[0.74em] w-auto align-baseline" />
-            </>
-          }
-        />
+        {/* "why curalinX?" with the logo as the word; logo height ≈ cap height, on the baseline */}
+        <Reveal className="mx-auto max-w-[760px] text-center">
+          <h2 className="type-h1 m-0 text-navy-900">
+            why <img src={logo} alt="curalinX" className="inline-block h-[0.74em] w-auto align-baseline" />?
+          </h2>
+        </Reveal>
 
         {/* The gap (left) and how curalinX bridges it (right) */}
         <div className="mx-auto mt-10 grid max-w-[1040px] grid-cols-1 items-start gap-8 md:mt-14 lg:grid-cols-2 lg:gap-12">
@@ -75,7 +69,6 @@ export default function WhyCuralinx() {
             className={cx('glass mt-10 animate-panel-in rounded-2xl p-6 md:p-12', audience === 'patient' ? 'bg-teal-100/60!' : 'bg-blue-100/60!')}
           >
             <div className="mx-auto mb-9 flex max-w-[720px] flex-col items-center gap-3.5 text-center">
-              <Badge tone={audience} dot>{data.badge}</Badge>
               <h3 className="type-h2 m-0 text-navy-900">{data.title}</h3>
               {data.intro.map((t) => (
                 <p key={t} className="m-0 text-base leading-relaxed text-gray-700 md:text-[17px]">{t}</p>
@@ -104,6 +97,7 @@ export default function WhyCuralinx() {
                   {WHY.plansEyebrow}
                 </p>
                 <h3 className="type-h2 m-0 text-navy-900">{WHY.plansTitle}</h3>
+                <p className="mt-2 mb-0 text-base text-gray-700">{data.plansFor}</p>
               </div>
               <div className="mx-auto grid max-w-[880px] grid-cols-1 items-stretch gap-6 md:grid-cols-2">
                 {data.plans.map((plan, i) => (

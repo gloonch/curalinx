@@ -11,25 +11,44 @@ export const NAV_LINKS = [
 const LOREM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
 const LOREM_S = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
 
-// Live estimates: annual global incidence spread evenly over the year, counted
-// from 00:00 UTC so every visitor sees the same worldwide number.
+// Live estimates, counted from 00:00 UTC so every visitor sees the same number.
+// All visible strings are the site copy, verbatim.
 export const HERO = {
-  heading: 'Every second, health changes.',
-  today: 'worldwide today',
-  sinceShort: 'since 00:00 UTC',
-  live: 'Live estimate',
-  note: 'Estimated from annual global incidence spread evenly over the year; not a real-time count.',
+  live: 'live estimate',
+  scroll: 'scroll',
   stats: [
-    { id: 'respiratory', label: 'new chronic respiratory disease cases', short: 'new respiratory disease cases', annual: 55_210_000, source: 'GBD 2021' },
-    { id: 'diabetes', label: 'new type 2 diabetes cases', short: 'new type 2 diabetes cases', annual: 23_900_000, source: 'GBD 2021' },
-    { id: 'cancer', label: 'new cancer cases', short: 'new cancer cases', annual: 20_000_000, source: 'WHO / IARC, GLOBOCAN 2022' },
-    { id: 'stroke', label: 'new stroke cases', short: 'new stroke cases', annual: 11_900_000, source: 'GBD 2021' },
+    {
+      id: 'diabetes',
+      title: 'new diabetes cases in Italy',
+      perSecond: 1 / 90,
+      counted: 'Counted from 00:00 UTC today',
+      rate: 'rate: +0.011 per second (1 every 90 seconds)',
+      source: 'source: AGENAS/Ministry of Health, 2025',
+      note: 'Estimated from annual incidence spread evenly over the year; not a real-time count.',
+    },
+    {
+      id: 'dementia',
+      title: 'New dementia cases',
+      perSecond: 1 / 90,
+      counted: 'Counted from 00:00 UTC today',
+      rate: 'rate: +0.011 per second (1 every 90 seconds)',
+      source: 'source: AUSL Piacenza, 2025',
+      note: 'Estimated from annual incidence spread evenly over the year; not a real-time count',
+    },
+    {
+      id: 'cardio',
+      title: 'New cardiovascular, kidney and metabolic disease cases',
+      perSecond: 1 / 36,
+      counted: 'Counted from 00:00 UTC today',
+      rate: 'rate: +0.028 per second (1 every 36 seconds)',
+      source: 'source: ANSA, 2026',
+      note: 'Estimated from annual incidence spread evenly over the year; not a real-time count',
+    },
   ],
 }
 
 export const WHY = {
-  eyebrow: 'Why Curalinx',
-  title: 'Why Curalinx',
+  title: 'why curalinX?',
   // The problem (left) and how curalinX answers it (right).
   story: {
     problem: [
@@ -41,15 +60,16 @@ export const WHY = {
     answerTitle: 'curalinX was created to bridge this gap.',
     answer: [
       'It creates digital continuity between what happens every day and what happens during the medical visit.',
-      'curalinX collects information throughout the patient’s care journey and organizes it into a structured overview, making the care journey more organized and easier to share between patients with a chronic condition and private healthcare professionals.',
+      'CuralinX collects information throughout the patient’s care journey and organizes it into a structured overview, making the care journey more organized and easier to share between patients with a chronic condition and private healthcare professionals.',
     ],
   },
-  prompt: 'Choose your perspective to see how curalinX works for you.',
+  prompt: 'Choose your perspective to see how curalinX works for you',
   empty: 'Curalinx connects patients, health data and doctors. Pick a side above to see the details.',
   plansEyebrow: 'Plans',
-  plansTitle: 'Choose your plan',
+  plansTitle: 'choose your plan',
   patient: {
-    badge: 'For patients',
+    tab: 'I’m a patient',
+    plansFor: '(for patients)',
     title: 'Your care journey, always with you',
     intro: [
       'curalinX supports you between appointments and stays with you throughout your healthcare journey. It helps you organize your information over time, find what matters when you need it, and share it with your healthcare professionals.',
@@ -92,7 +112,8 @@ export const WHY = {
     ],
   },
   doctor: {
-    badge: 'For doctors',
+    tab: 'I\'m a doctor',
+    plansFor: '(for doctors)',
     title: 'More time for the patient, less time reconstructing their history',
     intro: [
       'During each appointment, part of the time may be spent reconstructing what has happened since the previous visit: symptoms, treatments, events, and other information reported by the patient. Patients may not always remember every event that occurred during this period.',
@@ -105,7 +126,7 @@ export const WHY = {
       { icon: 'user-check', title: 'Patient Summary', text: 'With the patient’s consent, view information recorded between appointments, including symptoms, medications, events, and changes reported by the patient.' },
       { icon: 'chart-column', title: 'Timeline & Charts', text: 'View information shared by the patient through charts organized over time, making it easier to review.' },
       { icon: 'sliders-horizontal', title: 'Personalization', text: 'Filter and select the information you want to view, choosing which elements to see first during your review.' },
-      { icon: 'monitor-smartphone', title: 'Safe Access', text: 'Access curalinX from your computer, tablet, or smartphone, whether at the practice or remotely, without installing software. Information is managed with respect for privacy.' },
+      { icon: 'monitor-smartphone', title: 'Safe access', text: 'Access curalinX from your computer, tablet, or smartphone, whether at the practice or remotely, without installing software. Information is managed with respect for privacy.' },
     ],
     plans: [
       {
@@ -143,29 +164,55 @@ export const WHY = {
 }
 
 export const DEMO = {
-  eyebrow: 'Request a Demo',
-  title: 'See Curalinx in action',
-  intro: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. A short walkthrough tailored to you.',
-  perks: [
-    { icon: 'calendar', text: 'A 30-minute walkthrough at a time that suits you' },
-    { icon: 'user-check', text: 'Tailored to doctors or patients' },
-    { icon: 'shield-check', text: 'Your details stay private' },
-  ],
+  eyebrow: 'Request a demo',
+  title: 'See curalinX in action',
+  lead: 'A chance to see how curalinX works and how it can fit into your healthcare journey.',
+  intro: 'During the demo, you’ll explore the platform’s main features, see how information is organized, and discover how CuralinX connects patients and healthcare professionals between appointments.',
+  fields: {
+    name: 'full name',
+    namePlaceholder: 'Jane Cooper',
+    email: 'Email',
+    emailPlaceholder: 'name@example.com',
+    role: 'i am a',
+    doctor: 'doctor',
+    patient: 'patient',
+    organization: 'organization(optional)',
+    phone: 'phone number (optional)',
+    phonePlaceholder: '+39 000 000 0000',
+    message: 'message',
+    messagePlaceholder: 'what would you like to see in the demo?',
+  },
+  consent: 'By submitting you agree to our Privacy Policy.',
 }
 
 export const NEWSLETTER = {
-  title: 'Stay Updated with Curalinx',
-  text: 'News and product updates from Curalinx. No spam, unsubscribe at any time.',
+  title: 'Stay Updated with curalinX',
+  text: 'News and product updates from curalinX. No spam, unsubscribe at any time.',
+  email: 'Email address',
+  emailPlaceholder: 'enter your email address',
+  submit: 'subscribe',
 }
 
 export const CONTACT = {
-  eyebrow: 'Contact Us',
-  title: 'Contact Us',
+  title: 'contact us',
   intro: 'Questions, partnerships or press. We reply within one business day.',
+  fields: {
+    name: 'name',
+    subject: 'subject',
+    subjectPlaceholder: 'choose a subject',
+    message: 'message',
+    submit: 'send message',
+  },
   email: 'hello@curalinx.com',
   phone: '+1 (000) 000-0000',
   address: 'City, Country',
-  subjects: ['General question', 'Partnerships', 'Press', 'Technical support'],
+  subjects: ['general question', 'partnerships', 'press', 'tech support'],
+}
+
+export const FOOTER = {
+  about: 'About us',
+  product: 'Product',
+  contact: 'contact',
 }
 
 export const SOCIAL = [

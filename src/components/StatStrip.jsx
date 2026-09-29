@@ -25,12 +25,12 @@ export default function StatStrip({ live, numberRef, progress }) {
         style={{ opacity: fade }}
       />
       <div className="relative mx-auto flex h-full max-w-[1200px] items-center justify-center gap-3 px-4 text-[12px] leading-none nav:text-[13px]">
-        <span className="flex items-center gap-1.5">
+        <span className="flex flex-none items-center gap-1.5">
           <span className="relative flex size-1.5" style={{ opacity: fade }}>
             <span className="absolute inset-0 animate-ping rounded-full bg-teal-500/60" />
             <span className="relative size-1.5 rounded-full bg-teal-500" />
           </span>
-          <StatDetails ref={numberRef} stat={live.stat} rate={live.rate}>
+          <StatDetails ref={numberRef} stat={live.stat}>
             <LiveNumber
               value={live.value}
               tick={live.tick}
@@ -39,13 +39,13 @@ export default function StatStrip({ live, numberRef, progress }) {
             />
           </StatDetails>
         </span>
-        <span className="font-medium text-gray-900" style={{ opacity: fade }}>
-          <span key={live.stat.id} className="inline-block animate-panel-in">
-            {live.stat.short}
+        <span className="min-w-0 font-medium text-gray-900" style={{ opacity: fade }}>
+          <span key={live.stat.id} className="block animate-panel-in truncate">
+            {live.stat.title}
           </span>
         </span>
-        <span className="hidden text-gray-700 sm:inline" style={{ opacity: fade }}>
-          {HERO.sinceShort}
+        <span className="hidden flex-none text-gray-700 sm:inline" style={{ opacity: fade }}>
+          {live.stat.counted}
         </span>
       </div>
     </div>

@@ -27,14 +27,14 @@ export default function Hero({ slotRef, numberSlotRef, live, progress }) {
 
         <h1 className="type-eyebrow eyebrow-pill m-0 mt-12 text-blue-700 md:mt-16" style={fade}>
           <span className="size-1.5 rounded-full bg-blue-600" aria-hidden="true" />
-          {HERO.heading}
+          {HERO.live}
         </h1>
 
         <p className="sr-only">
-          {live.value} {live.stat.label} {HERO.today}. {HERO.live}, {HERO.sinceShort}. Source: {live.stat.source}.
+          {HERO.live}: {live.value} {live.stat.title}. {live.stat.counted}. {live.stat.source}.
         </p>
 
-        <StatDetails ref={numberSlotRef} stat={live.stat} rate={live.rate} className="mt-4">
+        <StatDetails ref={numberSlotRef} stat={live.stat} className="mt-4">
           <LiveNumber
             value={live.value}
             tick={live.tick}
@@ -49,7 +49,7 @@ export default function Hero({ slotRef, numberSlotRef, live, progress }) {
               <span className="absolute inset-0 animate-ping rounded-full bg-teal-500/60" />
               <span className="relative size-1.5 rounded-full bg-teal-500" />
             </span>
-            {live.stat.label} {HERO.today}
+            {live.stat.title}
           </span>
         </p>
       </div>
@@ -60,7 +60,7 @@ export default function Hero({ slotRef, numberSlotRef, live, progress }) {
         className="absolute bottom-7 left-1/2 flex -translate-x-1/2 flex-col items-center gap-2.5 text-[11px] font-semibold tracking-[0.16em] text-navy-900 uppercase no-underline"
         style={{ opacity: Math.max(0, 1 - progress * 3) }}
       >
-        <span>Scroll</span>
+        <span>{HERO.scroll}</span>
         <i className="block h-9 w-[1.5px] origin-top animate-cue rounded-full bg-linear-to-b from-blue-600 to-transparent" />
       </SectionLink>
     </section>

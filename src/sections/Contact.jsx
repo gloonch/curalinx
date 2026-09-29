@@ -44,7 +44,7 @@ export default function Contact() {
     <section id="contact" className="scroll-mt-nav py-20 md:py-24 xl:py-32">
       <div className="mx-auto grid max-w-[1200px] grid-cols-1 items-start gap-8 px-4 md:px-8 lg:grid-cols-[0.85fr_1.15fr] lg:gap-20">
         <div>
-          <SectionHead align="left" accent="teal" eyebrow={CONTACT.eyebrow} title={CONTACT.title} intro={CONTACT.intro} />
+          <SectionHead align="left" accent="teal" title={CONTACT.title} intro={CONTACT.intro} />
           <Reveal as="ul" className="mt-9 mb-0 grid list-none gap-3.5 p-0">
             {info.map((i) => (
               <li key={i.icon} className="flex items-center gap-3">
@@ -67,7 +67,7 @@ export default function Contact() {
             </div>
           ) : (
             <form onSubmit={submit} noValidate aria-label="Contact Us" className="grid grid-cols-1 gap-5 md:grid-cols-2">
-              <TextField id="contact-name" name="name" label="Name" placeholder="Your name" autoComplete="name" />
+              <TextField id="contact-name" name="name" label={CONTACT.fields.name} autoComplete="name" />
               <TextField
                 id="contact-email"
                 name="email"
@@ -81,21 +81,20 @@ export default function Contact() {
                 onBlur={onEmailBlur}
               />
               <TextField id="contact-phone" name="phone" type="tel" label="Phone Number" optional placeholder="+1 000 000 0000" autoComplete="tel" />
-              <Select id="contact-subject" name="subject" label="Subject" placeholder="Choose a subject" options={CONTACT.subjects} />
+              <Select id="contact-subject" name="subject" label={CONTACT.fields.subject} placeholder={CONTACT.fields.subjectPlaceholder} options={CONTACT.subjects} />
               <TextField
                 id="contact-message"
                 name="message"
-                label="Message"
+                label={CONTACT.fields.message}
                 required
                 multiline
                 rows={5}
-                placeholder="How can we help?"
                 error={errors.message}
                 onChange={() => errors.message && setErrors((s) => ({ ...s, message: null }))}
                 className="md:col-span-2"
               />
               <div className="flex justify-end md:col-span-2">
-                {status === 'sending' ? <RibbonLoader label="Sending" /> : <Button type="submit" iconRight="send" className="w-full md:w-auto">Send Message</Button>}
+                {status === 'sending' ? <RibbonLoader label="Sending" /> : <Button type="submit" iconRight="send" className="w-full md:w-auto">{CONTACT.fields.submit}</Button>}
               </div>
             </form>
           )}

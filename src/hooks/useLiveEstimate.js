@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { HERO } from '../content/site'
 
-const YEAR_SECONDS = 365.25 * 24 * 60 * 60
 const TICK_MS = 2000
 const TICKS_PER_STAT = 4 // each statistic stays for 8s
 
@@ -29,6 +28,5 @@ export default function useLiveEstimate() {
   }, [origin])
 
   const stat = HERO.stats[Math.floor(state.tick / TICKS_PER_STAT) % HERO.stats.length]
-  const rate = stat.annual / YEAR_SECONDS
-  return { stat, rate, tick: state.tick, value: fmt.format(Math.floor(rate * state.elapsed)) }
+  return { stat, tick: state.tick, value: fmt.format(Math.floor(stat.perSecond * state.elapsed)) }
 }
